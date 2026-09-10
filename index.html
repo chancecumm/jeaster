@@ -16,28 +16,20 @@
 </head>
 <body>
 
-    <!-- A clean container with NO plugin tags -->
     <div id="flash-container"></div>
 
-    <!-- Load the official Ruffle emulator engine -->
-    <script src="https://unpkg.com"></script>
+    <!-- Load Ruffle locally from your own repository -->
+    <script src="ruffle.js"></script>
 
     <script>
         window.addEventListener("DOMContentLoaded", () => {
-            // Check if Ruffle loaded correctly
             if (window.RufflePlayer) {
                 const ruffle = window.RufflePlayer.newest();
                 const player = ruffle.createPlayer();
-                
-                const container = document.getElementById("flash-container");
-                container.appendChild(player);
-
-                // Safely load the game file without triggering browser plugin blockers
-                player.load({
-                    url: "game.swf"
-                });
+                document.getElementById("flash-container").appendChild(player);
+                player.load({ url: "game.swf" });
             } else {
-                document.getElementById("flash-container").innerHTML = "<p style='color:white; text-align:center; padding-top:20px;'>Ruffle failed to load from the CDN. Please refresh.</p>";
+                document.getElementById("flash-container").innerHTML = "<p style='color:white; text-align:center; padding-top:20px;'>Local ruffle.js failed to initialize.</p>";
             }
         });
     </script>
