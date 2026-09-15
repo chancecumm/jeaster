@@ -3,56 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruffle Flash Player</title>
+    <title>Offline Flash Player</title>
     <style>
-        body {
-            background-color: #222;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        #player-container {
-            width: 800px;
-            height: 600px;
-            max-width: 100%;
-            max-height: 80vh;
-            background-color: #000;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-        h1 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
+        body { background-color: #222; color: #fff; font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        #player-container { width: 800px; height: 600px; max-width: 100%; max-height: 80vh; background-color: #000; }
+        h1 { font-size: 1.2rem; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
-    <h1>Flash Player Emulator</h1>
+    <h1>100% Offline Flash Player</h1>
     <div id="player-container"></div>
 
-    <!-- Load Ruffle from the official self-hosted/CDN script -->
-    <script src="https://unpkg.com"></script>
+    <!-- This looks for the ruffle.js file in your local folder -->
+    <script src="ruffle.js"></script>
     
     <script>
         window.RufflePlayer = window.RufflePlayer || {};
-        window.RufflePlayer.config = {
-            "autoplay": "on",
-            "unmuteOverlay": "hidden",
-        };
-
         window.addEventListener("DOMContentLoaded", () => {
             const ruffle = window.RufflePlayer.newest();
             const player = ruffle.createPlayer();
-            const container = document.getElementById("player-container");
-            container.appendChild(player);
+            document.getElementById("player-container").appendChild(player);
             
-            // Change 'movie.swf' to the name of your flash file
-            player.load("movie.swf");
+            // IMPORTANT: Change "game.swf" to your EXACT flash file name
+            player.load("game.swf"); 
         });
     </script>
 </body>
